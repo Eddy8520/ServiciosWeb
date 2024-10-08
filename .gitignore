@@ -1,0 +1,17 @@
+# Ignorar la carpeta node_modules
+node_modules/
+
+# Ignorar archivos de logs
+logs
+*.log
+
+# Ignorar archivos de entorno
+.env
+
+# Ignorar el directorio de compilación de TypeScript
+dist/
+build/
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
