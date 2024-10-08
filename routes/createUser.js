@@ -10,7 +10,7 @@ router.post('/', function(req, res, next) {
     console.log("recibido", username, email, password);
 
     if (!username || !email || !password) {
-        return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+        return res.status(400).json({status:400, error: 'Todos los campos son obligatorios' });
     }
 
     const PasswordHashed = async () => {
@@ -21,11 +21,11 @@ router.post('/', function(req, res, next) {
 
         executeQuery(query, values)
             .then(results => {
-                res.status(201).json({ message: 'Usuario creado exitosamente', userId: results.insertId });
+                res.status(201).json({  status:201, message: 'Usuario creado exitosamente', userId: results.insertId });
             })
             .catch(err => {
                 console.error('Error al insertar el usuario:', err);
-                res.status(500).json({ error: 'Error al insertar el usuario en la base de datos' });
+                res.status(500).json({status:500, error: 'Error al insertar el usuario en la base de datos' });
             });
     }
 
