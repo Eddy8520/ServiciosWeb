@@ -7,6 +7,55 @@ var router = express.Router();
 
 const SECRET_KEY = '#Admin123';
 
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Iniciar sesión
+ *     description: Permite a un usuario iniciar sesión utilizando su correo electrónico y contraseña.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: "johndoe@example.com"
+ *                 description: Correo electrónico del usuario
+ *               password:
+ *                 type: string
+ *                 example: "securePassword123"
+ *                 description: Contraseña del usuario
+ *     responses:
+ *       200:
+ *         description: Inicio de sesión exitoso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 userValidate:
+ *                   type: boolean
+ *                   example: true
+ *                 token:
+ *                   type: string
+ *                   example: "jwt.token.here"
+ *                 results:
+ *                   type: object
+ *                   additionalProperties: true
+ *       400:
+ *         description: Email y contraseña son obligatorios
+ *       401:
+ *         description: Credenciales inválidas
+ *       500:
+ *         description: Error al procesar la solicitud
+ */
+
 router.post('/', function(req, res) {
 
     const { email, password } = req.body;

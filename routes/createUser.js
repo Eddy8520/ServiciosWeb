@@ -3,7 +3,55 @@ const { executeQuery } = require("../DBConection/conection");
 const {hashPassword} = require("../helper/Encripta");
 var router = express.Router();
 
-/* Post Create User */
+
+/**
+ * @swagger
+ * /create-user:
+ *   post:
+ *     summary: Crear un nuevo usuario
+ *     description: Crea un nuevo usuario en la base de datos con un password encriptado.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: "johndoe"
+ *                 description: Nombre del usuario
+ *               email:
+ *                 type: string
+ *                 example: "johndoe@example.com"
+ *                 description: Correo electrónico del usuario
+ *               password:
+ *                 type: string
+ *                 example: "securePassword123"
+ *                 description: Contraseña del usuario
+ *     responses:
+ *       201:
+ *         description: Usuario creado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 201
+ *                 message:
+ *                   type: string
+ *                   example: Usuario creado exitosamente
+ *                 userId:
+ *                   type: integer
+ *                   example: 1
+ *       400:
+ *         description: Todos los campos son obligatorios
+ *       500:
+ *         description: Error al insertar el usuario en la base de datos
+ */
+
 router.post('/', function(req, res, next) {
 
     const { username, email, password } = req.body;

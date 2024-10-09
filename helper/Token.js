@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const SECRET_KEY = '#Admin123';
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1]; // Obtener el token de la cabecera
+    const token = req.headers['authorization']?.split(' ')[1];
 
     if (!token) {
         return res.status(403).json({ error: 'Token no proporcionado' });
@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
         if (err) {
             return res.status(401).json({ error: 'Token inválido' });
         }
-        req.user = decoded; // Guardar los datos del usuario en la solicitud
+        req.user = decoded;
         next();
     });
 };
